@@ -6,6 +6,7 @@ trackForm::trackForm(QWidget *parent, QList<QString> names, QList<int> inits, QL
     QDialog(parent),
     ui(new Ui::trackForm)
 {
+
     ui->setupUi(this);
     activeStyle = QString::fromStdString("QLabel { background-color : yellow }");
     charDeadStyle = QString::fromStdString("QLineEdit { color: red }");

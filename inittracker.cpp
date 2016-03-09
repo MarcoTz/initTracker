@@ -28,7 +28,7 @@ void initTracker::addChar()
         }
     }
 
-    removeButtons << new QPushButton(QString::fromStdString("-"));
+    removeButtons << new QPushButton(QApplication::style()->standardIcon(QStyle::SP_TrashIcon),"");
     ui->centralWidget->layout()->addWidget(removeButtons.last());
     connect(removeButtons.last(),SIGNAL(clicked()),this,SLOT(removeChar()));
 
@@ -76,6 +76,10 @@ void initTracker::on_actionExit_triggered()
 
 void initTracker::on_okButton_clicked()
 {
+    if(removeButtons.isEmpty()){
+        return;
+    }
+
     QList<QString> names;
     QList<int> inits;
     QList<int> hps;
