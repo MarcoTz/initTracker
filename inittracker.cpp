@@ -17,7 +17,7 @@ initTracker::~initTracker()
 
 void initTracker::addChar()
 {
-    ui->centralWidget->layout()->removeWidget(ui->okButton);
+    ui->centralWidget->layout()->removeWidget(ui->addButton);
 
     for(int i=0;i<3;i++){
         characters[i] << new QLineEdit("unnamed");
@@ -33,7 +33,7 @@ void initTracker::addChar()
     connect(removeButtons.last(),SIGNAL(clicked()),this,SLOT(removeChar()));
 
 
-    ui->centralWidget->layout()->addWidget(ui->okButton);
+    ui->centralWidget->layout()->addWidget(ui->addButton);
 }
 
 void initTracker::on_addButton_clicked()
@@ -94,7 +94,6 @@ void initTracker::on_okButton_clicked()
         names << characters[0].at(i)->text();
         inits << characters[1].at(i)->text().toInt();
         hps << characters[2].at(i)->text().toInt();
-
         for(int j=0;j<3;j++){
             characters[j].at(i)->setEnabled(false);
         }

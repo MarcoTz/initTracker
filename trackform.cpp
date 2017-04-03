@@ -12,7 +12,6 @@ trackForm::trackForm(QWidget *parent, QList<QString> names, QList<int> inits, QL
     charDeadStyle = QString::fromStdString("QLineEdit { color: red }");
 
     ui->gridLayout->removeWidget(ui->nextButton);
-    ui->gridLayout->removeWidget(ui->doneButton);
 
     for(int i=0;i<names.length();i++){
         int maxInd = getHighestIndex(inits);
@@ -21,15 +20,16 @@ trackForm::trackForm(QWidget *parent, QList<QString> names, QList<int> inits, QL
         charHPs << new QLineEdit(QString::number(hps.at(maxInd)));
         if(hps.at(maxInd)==0){charHPs.last()->setStyleSheet(charDeadStyle);}
         connect(charHPs.last(),SIGNAL(editingFinished()),this,SLOT(HPedited()));
+        charStatusses << new QLineEdit("");
 
         ui->gridLayout->addWidget(chars.last());
         ui->gridLayout->addWidget(charHPs.last());
+        ui->gridLayout->addWidget(charStatusses.last());
 
         inits[maxInd] = -1;
     }
 
     ui->gridLayout->addWidget(ui->nextButton);
-    ui->gridLayout->addWidget(ui->doneButton);
 
     chars.first()->setStyleSheet(activeStyle);
     if(charHPs.first()->text().toInt()==0){
@@ -54,11 +54,6 @@ int trackForm::getHighestIndex(QList<int> lst)
     }
 
     return highest;
-}
-
-void trackForm::on_doneButton_clicked()
-{
-    done(0);
 }
 
 void trackForm::on_nextButton_clicked(){

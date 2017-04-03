@@ -18,7 +18,6 @@ public:
     ~trackForm();
 
 private slots:
-    void on_doneButton_clicked();
 
     void on_nextButton_clicked();
 
@@ -28,6 +27,7 @@ private:
     Ui::trackForm *ui;
     QList<QLabel *> chars;
     QList<QLineEdit *> charHPs;
+    QList<QLineEdit *> charStatusses;
     int getHighestIndex(QList<int>);
     QString activeStyle;
     QString charDeadStyle;
